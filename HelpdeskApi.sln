@@ -11,13 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpdeskApi.Domain", "Helpd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpdeskApi.Infrastructure", "HelpdeskApi.Infrastructure\HelpdeskApi.Infrastructure.csproj", "{A4135F16-3FF0-4B7E-9FD6-631520FFDFF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpdeskApi.Tests", "HelpdeskApi.Tests\HelpdeskApi.Tests.csproj", "{1A10C17D-DC45-404E-A25C-1E16BC2DA872}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4FB678A2-F21B-444A-B0F7-E7756789B400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -36,5 +35,12 @@ Global
 		{A4135F16-3FF0-4B7E-9FD6-631520FFDFF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4135F16-3FF0-4B7E-9FD6-631520FFDFF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4135F16-3FF0-4B7E-9FD6-631520FFDFF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A10C17D-DC45-404E-A25C-1E16BC2DA872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A10C17D-DC45-404E-A25C-1E16BC2DA872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A10C17D-DC45-404E-A25C-1E16BC2DA872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A10C17D-DC45-404E-A25C-1E16BC2DA872}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

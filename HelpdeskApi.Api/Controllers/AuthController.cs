@@ -25,8 +25,7 @@ public class AuthController : ControllerBase
         _tokenService = tokenService;
     }
 
-    // Creates a brand-new tenant plus its first Admin user in one step.
-    // This is how a new company signs up for the product.
+
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
@@ -59,9 +58,7 @@ public class AuthController : ControllerBase
         return Ok(new AuthResponse(token, adminUser.Email, adminUser.Role.ToString(), tenant.Id));
     }
 
-    // Logs a user into their existing tenant. Subdomain + email together
-    // identify the user, since email is only unique WITHIN a tenant
-    // (see the composite unique index in HelpdeskDbContext).
+
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequest request)
     {

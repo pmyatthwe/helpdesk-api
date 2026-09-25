@@ -19,9 +19,7 @@ public class TicketsController : ControllerBase
         _db = db;
     }
 
-    // GET /api/tickets?status=Open&priority=High&page=1&pageSize=20
-    // No manual tenant filtering needed here — the DbContext's global query
-    // filter already scopes this to the caller's tenant.
+
     [HttpGet]
     public async Task<IActionResult> GetTickets(
         [FromQuery] TicketStatus? status,
@@ -83,8 +81,7 @@ public class TicketsController : ControllerBase
         return CreatedAtAction(nameof(GetTicket), new { id = ticket.Id }, ticket);
     }
 
-    // Only Agents and Admins can change ticket status/assignment — Customers
-    // can create and comment on tickets but not manage their lifecycle.
+
     [HttpPatch("{id:guid}")]
     [Authorize(Roles = "Admin,Agent")]
     public async Task<IActionResult> UpdateTicket(Guid id, [FromBody] UpdateTicketRequest request)
@@ -98,5 +95,27 @@ public class TicketsController : ControllerBase
 
         await _db.SaveChangesAsync();
         return NoContent();
+    }
+
+
+    [HttpPost("{id:guid}/comments")]
+    public async Task<IActionResult> AddComment(Guid id, [FromBody] CreateCommentRequest request)
+    {
+        var ticketExists = await _db.Tickets.AnyAsync(t => t.Id == id);
+        if (!ticketExists) return NotFound();
+ 
+        var userId = Guid.Parse(User.FindFirst("sub")!.Value);
+ 
+        var comment = new Comment
+        {
+            TicketId = id,
+            UserId = userId,
+            Body = request.Body
+        };
+ 
+        _db.Comments.Add(comment);
+        await _db.SaveChangesAsync();
+ 
+        return CreatedAtAction(nameof(GetTicket), new { id }, comment);
     }
 }
